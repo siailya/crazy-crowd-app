@@ -2,13 +2,13 @@ FROM node:22.11.0-alpine3.20 AS builder
 
 WORKDIR /app
 
-COPY package.json yarn.lock ./
+COPY package*.json ./
 
-RUN yarn install
+RUN npm install
 
 COPY . .
 
-RUN yarn run frontend:build
+RUN npm run build
 
 # Serve app by Nginx
 FROM nginx:1.23.2-alpine
